@@ -10,7 +10,11 @@ var OrbitControlsModel = OrbitControlsAutogen.OrbitControlsModel.extend({
         var obj = new OrbitControls(controlling.obj);
         obj.dispose();  // Disconnect events, we need to (dis-)connect on freeze/thaw
         obj.enableKeys = false; // turn off keyboard navigation
-        obj.update_controlled();
+        
+        obj.syncToThreeObj();
+        obj.syncToModel();
+        obj.trigger('childchange', obj);
+        
         return obj;
     },
 
